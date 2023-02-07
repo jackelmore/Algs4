@@ -77,10 +77,10 @@ namespace jackel.UnionFindTests
 
             do
             {
-                Console.Write("Choose find: Quick[F]ind, Quick[U]nion, QuickUnionP[A]thComp, [W]eightedQU, WeightedQU[P]athComp, [Q]uit: ");
-                char c = char.ToUpper(Console.ReadKey().KeyChar);
+                Console.Write("Choose find: Quick[F]ind, Quick[U]nion, QuickUnionP[A]thComp, [W]eightedQU, WeightedQU[P]athComp, [Z]=Quit: ");
+                char inputkey = char.ToUpper(Console.ReadKey().KeyChar);
                 Console.Write("\n");
-                switch (c)
+                switch (inputkey)
                 {
                     case 'F':
                         type = AlgType.QuickFind;
@@ -97,10 +97,10 @@ namespace jackel.UnionFindTests
                     case 'P':
                         type = AlgType.WeightedQuickUnionPathComp;
                         break;
-                    case 'Q':
+                    case 'Z':
                         return;
                     default:
-                        break;
+                        return;
                 }
                 millis = new UFConsole().RunFind(fileName, type);
                 Console.WriteLine("Total runtime: {0}ms", millis);

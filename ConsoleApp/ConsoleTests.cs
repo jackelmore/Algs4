@@ -1,22 +1,24 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Intrinsics.Arm;
 using jackel.Percolation;
 using jackel.SortTests;
 using jackel.UnionFindTests;
 
-namespace AlgsConsoleTests
+internal class Program
 {
-    class ConsoleTests
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
+        var dataPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString() + @"\SampleData";
+        Console.WriteLine($"Data path is: {dataPath}");
+
+        char inputkey;
+        do
         {
-            // Following line will need adjustment in production to source data
-            string dataPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString() + @"\SampleData";
-            Console.WriteLine($"Data path is: {dataPath}");
-            Console.Write("[P]erc, PercS[t]ats, [S]orting, [U]nionFind: ");
-            char c = char.ToUpper(Console.ReadKey().KeyChar);
-            Console.Write(System.Environment.NewLine);
-            switch (c)
+            Console.Write("[P]erc, PercS[t]ats, [S]orting, [U]nionFind, [Z]=Quit: ");
+            inputkey = char.ToUpper(Console.ReadKey().KeyChar);
+            Console.Write(Environment.NewLine);
+            switch (inputkey)
             {
                 case 'P':
                     Percolation.PercolationTestMain(new string[] { $"{dataPath}\\Perc\\input50.txt" });
@@ -30,9 +32,7 @@ namespace AlgsConsoleTests
                 case 'U':
                     UFConsole.UnionFindTestsMain(new string[] { $"{dataPath}\\UF\\largeUF.txt" });
                     break;
-                case 'Q':
-                    return;
             }
-        }
+        } while (inputkey != 'Z');
     }
 }

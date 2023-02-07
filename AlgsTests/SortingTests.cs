@@ -209,7 +209,7 @@ namespace jackel.SortTests
             do
             {
                 string[] a = (string[])original.Clone();
-                Console.Write("[S]election, [I]nsertion, s[H]ell, [M]erge, Merge[B]U, Merge[X], [Q]uick, Hea[P], [*]int [Z]=Quit:");
+                Console.Write("[S]election, [I]nsertion, s[H]ell, [M]erge, Merge[B]U, Merge[X], [Q]uick, Hea[P], [*]int, [Z]=Quit:");
                 inputKey = char.ToUpper(Console.ReadKey().KeyChar);
                 Console.WriteLine();
                 switch (inputKey)
@@ -243,7 +243,7 @@ namespace jackel.SortTests
                         IntSortingAsync(15000);
                         break;
                 }
-            } while (char.ToUpper(inputKey) != 'Z');
+            } while (inputKey != 'Z');
         }
     }
 }
